@@ -78,7 +78,7 @@ User-Agent: curl/7.85.0
 Accept: */*
 Connection: close
 
-Tanggapan/Respon
+# Response/ Tanggapan
 HTTP/1.1 200 OK
 Date: Mon, 29 Sep 2025 10:15:30 GMT
 Server: nginx/1.18.0
@@ -97,7 +97,7 @@ Data dan header aplikasi disegmentasikan dan dienkapsulasi pada lapisan transpor
 2025-10-13 09:15:32 ACCEPT TCP src=192.168.1.45 dst=172.217.22.14 sport=51432 dport=443 flags=SYN len=60
 2025-10-13 09:15:32 ACCEPT TCP src=172.217.22.14 dst=192.168.1.45 sport=443 dport=51432 flags=SYN,ACK len=60
 
-# Log firewall sering kali menyertakan port sumber dan tujuan serta flag, tetapi semua field lainnya seringkali tidak disertakan. Namun, log tersebut berharga untuk mendeteksi jenis serangan tertentu, seperti pembajakan sesi. Pembajakan sesi dapat dideteksi dengan menganalisis nomor urutan yang terdapat dalam header. Jika nomor urutan tiba-tiba berjauhan, penyelidikan lebih lanjut diperlukan. Output di bawah ini menunjukkan serangkaian paket yang ditangkap dengan Wireshark. 
+Log firewall sering kali menyertakan port sumber dan tujuan serta flag, tetapi semua field lainnya seringkali tidak disertakan. Namun, log tersebut berharga untuk mendeteksi jenis serangan tertentu, seperti pembajakan sesi. Pembajakan sesi dapat dideteksi dengan menganalisis nomor urutan yang terdapat dalam header. Jika nomor urutan tiba-tiba berjauhan, penyelidikan lebih lanjut diperlukan. Output di bawah ini menunjukkan serangkaian paket yang ditangkap dengan Wireshark. 
 
 No.     Time        Source          Destination     Protocol Length  Info
 1       0.000000    192.168.1.45    172.217.22.14   TCP      74      51432 → 80 [SYN] Seq=0 Win=64240 Len=0 MSS=1460
@@ -120,7 +120,8 @@ No.   Time       Source        Destination   Protocol Length Info
 3     0.000030   203.0.113.45  192.168.1.10  UDP       600    Fragmented IP protocol (UDP) (id=0x1a2b) Offset=1480, Len=64   <-- Overlap
 4     0.000045   192.168.1.10  203.0.113.45  ICMP      98     Destination unreachable (Fragment reassembly time exceeded)
 
-# Setelah lapisan internet menyelesaikan enkapsulasi, paket IP dikirim ke lapisan tautan. Lapisan tautan juga menambahkan header-nya, yang berisi informasi pengalamatan lebih lanjut. Sebagian besar log akan menampilkan alamat MAC sumber dan tujuan. Untuk
+#LINK 
+Setelah lapisan internet menyelesaikan enkapsulasi, paket IP dikirim ke lapisan tautan. Lapisan tautan juga menambahkan header-nya, yang berisi informasi pengalamatan lebih lanjut. Sebagian besar log akan menampilkan alamat MAC sumber dan tujuan. Untuk
 jenis serangan tertentu, misalnya, ARP poisoning atau spoofing, informasi dalam log tidak akan cukup. Untuk jenis serangan ini, kita membutuhkan paket lengkap dan konteksnya. Misalnya, yang tidak dapat Anda lihat dalam log adalah ketika alamat MAC muncul dari beberapa antarmuka atau ketika banyak paket ARP yang tidak perlu dikirim dengan alamat MAC yang saling bertentangan. Contoh di bawah ini menunjukkan tangkapan paket yang merinci serangan ARP poisoning. Host dengan IP 192.168.1.200 membalas setiap permintaan ARP dengan MAC yang sama.
 
 No.   Time       Source           Destination      Protocol Length Info
