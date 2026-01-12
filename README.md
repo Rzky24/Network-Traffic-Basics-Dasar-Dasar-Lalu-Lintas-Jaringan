@@ -120,7 +120,7 @@ No.   Time       Source        Destination   Protocol Length Info
 3     0.000030   203.0.113.45  192.168.1.10  UDP       600    Fragmented IP protocol (UDP) (id=0x1a2b) Offset=1480, Len=64   <-- Overlap
 4     0.000045   192.168.1.10  203.0.113.45  ICMP      98     Destination unreachable (Fragment reassembly time exceeded)
 
-#LINK 
+# LINK 
 Setelah lapisan internet menyelesaikan enkapsulasi, paket IP dikirim ke lapisan tautan. Lapisan tautan juga menambahkan header-nya, yang berisi informasi pengalamatan lebih lanjut. Sebagian besar log akan menampilkan alamat MAC sumber dan tujuan. Untuk
 jenis serangan tertentu, misalnya, ARP poisoning atau spoofing, informasi dalam log tidak akan cukup. Untuk jenis serangan ini, kita membutuhkan paket lengkap dan konteksnya. Misalnya, yang tidak dapat Anda lihat dalam log adalah ketika alamat MAC muncul dari beberapa antarmuka atau ketika banyak paket ARP yang tidak perlu dikirim dengan alamat MAC yang saling bertentangan. Contoh di bawah ini menunjukkan tangkapan paket yang merinci serangan ARP poisoning. Host dengan IP 192.168.1.200 membalas setiap permintaan ARP dengan MAC yang sama.
 
